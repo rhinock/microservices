@@ -1,31 +1,31 @@
-# Начнем создавать образ с приложением. 
-# За основу возьмем дистрибутив ubuntu версии 16.04
+# Let's start creating an image with the application.
+# We will take the ubuntu distribution of version 16.04 as a basis
 
 FROM ubuntu:16.04
 
-# Для работы приложения нам нужны mongo и ruby
-# Обновим кеш репозитория и установим нужные пакеты
+# For the application to work, we need mongo and ruby
+# Update the repository cache and install the required packages
 
 RUN apt-get update
 RUN apt-get install -y mongodb-server ruby-full ruby-dev build-essential git
 RUN gem install bundler
 
-# Скачаем наше приложение в контейнер
+# Download our application to the container
 
 RUN git clone https://github.com/yagubern/app.git
 
-# Скопируем файлы конфигурации в контейнер
+# Copy the configuration files to the container
 
 COPY mongod.conf /etc/mongod.conf
 COPY db_config /app/db_config
 COPY start.sh /start.sh
 
-# Нам нужно установить зависимости приложения и произвести настройку
+# We need to install application dependencies and configure
 
 RUN cd /app && bundle install
 RUN mkdir -p /data/db
 RUN chmod 0777 /start.sh
 
-# Выполняем старт сервиса при старте контейнера
+# We start the service at the start of the container
 
 CMD ["/start.sh"]
