@@ -227,3 +227,23 @@ You should see a similar picture in the output:
 
 Go to http://127.0.0.1:9292/
 and make sure the project is working correctly
+
+#### Homework #1
+
+Add [docker-compose.yml](docker-compose.yml) so that microservices are launched in 2 bridges as follows:
+
+![](DockerPractice3_03.png)
+
+That is, so that the ui service does not have access to the database.
+
+#### Homework #2
+
+Parameterize with environment variables:
+- port of publication of the ui service
+- service versions
+- maybe something else at your discretion
+
+Write the parameterized parameters to a separate file with the .env extension
+- [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
+
+Without using the source and export commands, docker-compose must pick up the variables from this file.
