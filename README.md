@@ -206,7 +206,7 @@ docker run -d --network=app -p 127.0.0.1:9292:9292 <your-login>/ui:latest
 
 #### docker-compose.yml
 
-- Create a [docker-compose.yml](app/docker-compose.yml) file in the project directory.
+- Create a [docker-compose.yml](docker-compose.yml) file in the project directory.
 - It is important that the ui, comment, post folders are next to each other.
 
 Note that docker-compose supports
