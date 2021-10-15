@@ -1,4 +1,4 @@
-# Microservices
+# Docker Compose
 
 - [7.11 Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 - [remove git submodule but keep files](https://stackoverflow.com/a/26752628/16420746)
