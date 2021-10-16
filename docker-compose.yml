@@ -18,7 +18,7 @@ services:
       - front_net
   post:
     build: ./app/post-py
-    image: ${USERNAME}/post-py:${POST_VERSION}
+    image: ${USERNAME}/post:${POST_VERSION}
     networks:
       - back_net
       - front_net

@@ -238,7 +238,7 @@ docker network create app --driver bridge
 Let's run our app project using a bridge network:
 ```
 docker run -d --network=app mongo:3.2
-docker run -d --network=app <your-login>/post-py:latest
+docker run -d --network=app <your-login>/post:latest
 docker run -d --network=app <your-login>/comment:latest
 docker run -d --network=app -p 127.0.0.1:9292:9292 <your-login>/ui:latest
 ```
@@ -265,7 +265,7 @@ docker kill $(docker ps -q)
 Let's launch new:
 ```
 docker run -d --network=app --network-alias=post_db --network-alias=comment_db mongo:3.2
-docker run -d --network=app --network-alias=post <your-login>/post-py:latest
+docker run -d --network=app --network-alias=post <your-login>/post:latest
 docker run -d --network=app --network-alias=comment <your-login>/comment:latest
 docker run -d --network=app -p 127.0.0.1:9292:9292 <your-login>/ui:latest
 ```
@@ -329,3 +329,75 @@ Write the parameterized parameters to a separate file with the .env extension
 - [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
 
 Without using the source and export commands, docker-compose must pick up the variables from this file.
+
+# Kubernetes
+
+[kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+## Namespaces
+Create
+```kubectl
+k create -f namespaces.yml --save-config
+```
+
+Output:
+```
+namespace/dev-1 created
+```
+
+Get:
+```kubectl
+k get namespaces dev-1
+```
+
+## Services
+Create
+```kubectl
+k create -f services.yml --save-config
+```
+
+Output:
+```
+service/mongo-service created
+service/comment-service created
+service/post-service created
+service/ui-service created
+```
+
+Get:
+```kubectl
+k get service -n dev-1
+```
+
+## Deployments
+Create
+```kubectl
+k create -f deployments.yml --save-config
+```
+
+Output:
+```
+deployment.apps/post-deployment created
+deployment.apps/ui-deployment created
+deployment.apps/comment-deployment created
+deployment.apps/mongo-deployment created
+```
+
+Get:
+```kubectl
+k get deployment.apps -n dev-1
+```
+
+## Replica Sets
+Get:
+```kubectl
+k get rs -n dev-1
+```
+
+## Pods
+Get:
+```kubectl
+k get po -n dev-1
+```
+
+## 
