@@ -237,7 +237,7 @@ docker network create app --driver bridge
 
 Let's run our app project using a bridge network:
 ```
-docker run -d --network=app mongo:latest
+docker run -d --network=app mongo:3.2
 docker run -d --network=app <your-login>/post-py:latest
 docker run -d --network=app <your-login>/comment:latest
 docker run -d --network=app -p 127.0.0.1:9292:9292 <your-login>/ui:latest
@@ -264,7 +264,7 @@ docker kill $(docker ps -q)
 
 Let's launch new:
 ```
-docker run -d --network=app --network-alias=post_db --network-alias=comment_db mongo:latest
+docker run -d --network=app --network-alias=post_db --network-alias=comment_db mongo:3.2
 docker run -d --network=app --network-alias=post <your-login>/post-py:latest
 docker run -d --network=app --network-alias=comment <your-login>/comment:latest
 docker run -d --network=app -p 127.0.0.1:9292:9292 <your-login>/ui:latest
