@@ -333,3 +333,29 @@ Without using the source and export commands, docker-compose must pick up the va
 # Kubernetes
 
 [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+## hosts file
+```sh
+# <minikube ip> wms.com
+192.168.49.2 app.com
+```
+
+## Apply manifests
+```sh
+k apply -f k8s/
+```
+
+## Remove Kubernetes generated items
+```sh
+k delete -f k8s/
+```
+
+## Get Kubernetes generated items
+```sh
+k get deploy
+k get rs
+k get svc
+k get ingress
+k get endpoints
+k get po
+```
