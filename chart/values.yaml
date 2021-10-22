@@ -1,0 +1,36 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+ui:
+  name: ui
+  appLabel: ui
+  replicas: 3
+
+comment:
+  name: comment
+  appLabel: comment
+
+mongo:
+  name: mongo
+  appLabel: mongo
+
+post:
+  name: post
+  appLabel: post
+
+env:
+  commentDatabase: test
+  commentDatabaseHost: mongo-service
+  commentDatabasePort: 27017
+  commentServiceHost: comment-service
+  commentServicePort: 9292
+  mongoDatabasePort: 27017
+  postDatabase: test
+  postDatabaseHost: mongo-service
+  postDatabasePort: 27017
+  postServiceHost: post-service
+  postServicePort: 5000
+  uiServicePort: 9292
+
+storageClassName: standard

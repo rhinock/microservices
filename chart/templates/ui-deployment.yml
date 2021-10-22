@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ui.name }}-deployment
+  labels:
+    app: {{ .Values.ui.appLabel }}
+spec:
+  replicas: {{ .Values.ui.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.ui.appLabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.ui.appLabel }}
+    spec:
+      containers:
+        - name: {{ .Values.ui.appLabel }}
+          image: rhinock/ui:latest
+          env:
+            - name: POST_SERVICE_HOST
+              value: {{ .Values.env.postServiceHost }}
+            - name: POST_SERVICE_PORT
+              value: "{{ .Values.env.postServicePort }}"
+            - name: COMMENT_SERVICE_HOST
+              value: {{ .Values.env.commentServiceHost }}
+            - name: COMMENT_SERVICE_PORT
+              value: "{{ .Values.env.commentServicePort }}"
+          ports:
+            - containerPort: {{ .Values.env.uiServicePort }}
+          resources: {}

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.comment.name }}-deployment
+  labels:
+    app: {{ .Values.comment.appLabel }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.comment.appLabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.comment.appLabel }}
+    spec:
+      containers:
+        - name: {{ .Values.comment.appLabel }}
+          image: rhinock/comment:latest
+          env:
+            - name: COMMENT_DATABASE_HOST
+              value: {{ .Values.env.commentDatabaseHost }}
+            - name: COMMENT_DATABASE_PORT
+              value: "{{ .Values.env.commentDatabasePort }}"
+            - name: COMMENT_DATABASE
+              value: {{ .Values.env.commentDatabase }}
+          ports:
+            - containerPort: {{ .Values.env.commentServicePort }}
+          resources: {}

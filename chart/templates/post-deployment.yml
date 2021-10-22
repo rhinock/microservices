@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.post.name }}-deployment
+  labels:
+    app: {{ .Values.post.appLabel }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.post.appLabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.post.appLabel }}
+    spec:
+      containers:
+        - name: {{ .Values.post.appLabel }}
+          image: rhinock/post:latest
+          env:
+            - name: POST_DATABASE_HOST
+              value: {{ .Values.env.postDatabaseHost }}
+            - name: POST_DATABASE_PORT
+              value: "{{ .Values.env.postDatabasePort }}"
+            - name: POST_DATABASE
+              value: {{ .Values.env.postDatabase }}
+          ports:
+            - containerPort: {{ .Values.env.postServicePort }}
+          resources: {}
