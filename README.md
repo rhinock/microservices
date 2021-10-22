@@ -336,7 +336,7 @@ Without using the source and export commands, docker-compose must pick up the va
 
 ## hosts file
 ```sh
-# <minikube ip> wms.com
+# <minikube ip> app.com
 192.168.49.2 app.com
 ```
 
