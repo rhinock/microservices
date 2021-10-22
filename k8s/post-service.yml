@@ -9,5 +9,3 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-      # port: 27017
-      # targetPort: 27017

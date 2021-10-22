@@ -348,10 +348,15 @@ k apply -f k8s/
 ## Remove Kubernetes generated items
 ```sh
 k delete -f k8s/
+k delete pvc mongo-volume-mongo-statefulset-0
 ```
 
 ## Get Kubernetes generated items
 ```sh
+k get sc
+k get pv
+k get pvc
+k get sts
 k get deploy
 k get rs
 k get svc
