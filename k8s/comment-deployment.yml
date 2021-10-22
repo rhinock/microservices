@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comment-deployment
+  labels:
+    app: comment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comment
+  template:
+    metadata:
+      labels:
+        app: comment
+    spec:
+      containers:
+        - name: comment
+          image: rhinock/comment:latest
+          env:
+            - name: COMMENT_DATABASE_HOST
+              value: mongo-service
+            - name: COMMENT_DATABASE_PORT
+              value: "27017"
+            - name: COMMENT_DATABASE
+              value: test
+          ports:
+            - containerPort: 9292
+          resources: {}
